@@ -18,9 +18,14 @@
         @livewireStyles
     </head>
     <body>
+    <div class="bg-green-900 text-white py-4 px-6 text-center">
+        <h1 class="text-4xl font-bold">District Good Governance Index</h1>
+    </div>
+    
         <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
             {{ $slot }}
         </div>
+       
 
         @livewireScripts
     </body>
