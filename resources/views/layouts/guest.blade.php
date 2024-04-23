@@ -16,6 +16,7 @@
 
         <!-- Styles -->
         @livewireStyles
+        
     </head>
     <body>
         
@@ -23,7 +24,7 @@
         <h1 class="text-4xl font-bold">District Good Governance Index</h1>
         <h2 class="justify-center">(Kullu, Himachal Pradesh)</h2>
     </div>    
-        <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
+        <div class="font-sans  dark:text-gray-100 antialiased">
             {{ $slot }}
         </div>
         @livewireScripts
