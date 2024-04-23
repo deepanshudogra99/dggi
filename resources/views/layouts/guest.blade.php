@@ -18,6 +18,7 @@
         @livewireStyles
     </head>
     <body>
+        
     <div class="bg-green-900 text-white py-4 px-6 text-center">
         <h1 class="text-4xl font-bold">District Good Governance Index</h1>
         <h2 class="justify-center">(Kullu, Himachal Pradesh)</h2>
