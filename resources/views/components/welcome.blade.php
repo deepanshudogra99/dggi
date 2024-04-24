@@ -6,7 +6,7 @@
     </h1>
 
     <p class="mt-6 text-gray-500 dark:text-gray-400 leading-relaxed">
-    A well-structured DGGI provides valuable insights into the strengths and weaknesses of governance mechanisms within a district, helping policymakers and administrators identify areas for improvement and implement targeted interventions. By measuring and tracking progress over time, the index facilitates evidence-based decision-making, fosters healthy competition among districts, and promotes the overall development and well-being of communities.
+    
     </p>
 </div>
 
