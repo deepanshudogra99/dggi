@@ -16,11 +16,29 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('statemaster') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Masters') }}
                     </x-nav-link>
-                </div>
+                </div> -->
+                <x-dropdown align="right" width="64">
+                    <x-slot name="trigger">                        
+                        <span class="inline-flex rounded-md">
+                            <button type="button" class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                {{__('Masters')}}
+                                <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </button>
+                        </span>
+                    </x-slot>
+                    <x-slot name="content">                         
+                        <x-dropdown-link href="{{ route('statemaster') }}">
+                            {{ __('Department  Master') }}
+                        </x-dropdown-link>
+                    </x-slot>
+                </x-dropdown>                 
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('statemaster') }}" :active="request()->routeIs('dashboard')">
                         {{ __('District Users') }}
