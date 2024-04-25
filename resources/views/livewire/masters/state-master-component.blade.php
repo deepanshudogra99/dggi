@@ -1,13 +1,15 @@
-<div>
-    <!-- <div>
-        <h2 class="text-lg font-semibold text-gray-800 justify-center">State Master</h2>
-        <button wire:click="toggle('newmodal')" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">+ Add State</button>
-    </div> -->
+<div>     
+    <div>
+        @if (session()->has('success'))
+            <div class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-md">
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
+    </div>
     <div class="flex justify-center items-center">
-    <h2 class="text-lg font-semibold text-gray-800">State Master</h2>
-    <button wire:click="toggle('newmodal')" class="ml-auto px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">+ Add State</button>
-</div>
-
+        <h2 class="text-lg font-semibold text-gray-800">State Master</h2>
+        <button wire:click="toggle('newmodal')" class="ml-auto px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">+ Add State</button>
+    </div>
     <x-confirmation-modal wire:model="newmodal">
         <x-slot name="title">
             Add New State
@@ -35,5 +37,48 @@
             </div>
         </x-slot>
     </x-confirmation-modal>
+        <div class="mt-10 flex flex-col">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sr.No</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">State Name</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">State Code</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">State Abbrevation</th>
+                    </tr>
+                </thead>
+                
+                <tbody class="bg-white divide-y divide-gray-200">
+                @foreach($tableData as $key=>$dt)
+                    <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">{{++$key}}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">{{$dt->stname}}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">{{$dt->stcode}}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">{{$dt->stabbr}}</div>
+                    </td>                    
+                    </tr>
+                @endforeach                    
+                </tbody>
+                </table>
+                <div class="py-2">
+                    {{ $tableData->links() }}
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+
 </div>
+
 

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class StateMaster extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'stname',
+        'stcode',
+        'stabbr'
+    ];
 }
