@@ -34,7 +34,7 @@
                     </x-slot>
                     <x-slot name="content">                         
                         <x-dropdown-link href="{{ route('statemaster') }}">
-                            {{ __('Department  Master') }}
+                            {{ __('State  Master') }}
                         </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>                 
