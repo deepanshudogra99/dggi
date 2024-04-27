@@ -1,5 +1,5 @@
-<div>     
-    <div>
+<div>
+<div>
         @if (session()->has('success'))
             <div class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-md">
                 <span>{{ session('success') }}</span>
@@ -11,22 +11,19 @@
             </div>
         @endif
     </div>
-    <!-- <div class="flex justify-center items-center">
-        <h2 class="text-2xl font-extrabold text-red-500 leading-tight tracking-tight">State Master</h2>
-        <button wire:click="toggle('newmodal')" class="ml-auto px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">+ Add State</button>
-        <button wire:click="toggle('newmodal')" class="ml-auto px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Report</button>
-    </div> -->
+<div>     
+
     <div class="flex justify-between items-center">
-    <h2 class="text-2xl font-extrabold text-red-500 leading-tight tracking-tight">State Master</h2>
+    <h2 class="text-2xl font-extrabold text-green-500 leading-tight tracking-tight">District Master</h2>
     <div>
-        <button wire:click="toggle('newmodal')" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">+ Add State</button>
+        <button wire:click="toggle('newmodal')" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">+ Add District</button>
        
     </div>
 </div>
 
     <x-confirmation-modal wire:model="newmodal">
         <x-slot name="title">
-            Add New State
+            Add New District
         </x-slot>
         <x-slot name="content">
             <div>  
@@ -35,11 +32,15 @@
                     @csrf
                         <div class="mb-4">
                             <x-label for="statename" name="statename" class="block text-sm font-medium text-gray-700"/><b>State Name</b>
-                            <x-input wire:model="statename" name="statename" type="text" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter state name" />
+                            <x-select wire:model="statename" name="statename" type="text" :ddlist="$states" idfield="stcode" textfield="stname" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter district name" />
                         </div>    
                         <div class="mb-4">
-                            <x-label for="stateabr" name="stateabr" class="block text-sm font-medium text-gray-700"/><b>State Abbrevation</b>
-                            <x-input wire:model="stateabr" name="stateabr" type="text" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter state abbrevation    " />
+                            <x-label for="stateabr" name="stateabr" class="block text-sm font-medium text-gray-700"/><b>District Name</b>
+                            <x-input wire:model="distname" name="stateabr" type="text" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter district name    " />
+                        </div>    
+                        <div class="mb-4">
+                            <x-label for="stateabr" name="stateabr" class="block text-sm font-medium text-gray-700"/><b>District Abbrevation</b>
+                            <x-input wire:model="distabbr" name="stateabr" type="text" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter district abbrevation    " />
                         </div>    
                     </form>
             </div>
@@ -47,38 +48,46 @@
         <x-slot name="footer">
             <div class="flex justify-end">
                 <button wire:click="$toggle('newmodal')"  class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Cancel</button>
-                <button wire:click="newstate()"  class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 ml-2" >Submit</button>
+                <button wire:click="newdistrict()"  class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 ml-2" >Submit</button>
             </div>
         </x-slot>
     </x-confirmation-modal>
-        <div class="mt-10 flex flex-col">
+    <div class="mt-10 flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-300 bg-red-200 hover:bg-red-300">
-                <thead class="bg-red-300 ">
+                <table class="min-w-full divide-y divide-gray-300 bg-green-200 hover:bg-green-300">
+                <thead class="bg-green-300 ">
                     <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>Sr.No</b></th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>State Name</b></th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>State Code</b></th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>State Abbrevation</b></th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>District Name</b></th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>District Code</b></th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>District Abbrevation</b></th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>Total Offices</b></th>
                     </tr>
                 </thead>
                 
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($tableData as $key=>$dt)
-                    <tr class="hover:bg-red-100">
+                    <tr class="hover:bg-green-100">
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{++$key}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">{{$dt->stname}}</div>
+                        <div class="text-sm text-gray-900">{{getstatename($dt->stcode)}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{$dt->stcode}}</div>
+                    <div class="text-sm text-gray-900">{{$dt->dtname}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{$dt->stabbr}}</div>
+                        <div class="text-sm text-gray-900">{{$dt->dtcode}}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">{{$dt->dtabbr}}</div>
+                    </td>                    
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">{{ $dt->totaloffices !== null ? $dt->totaloffices : 0 }}</div>
                     </td>                    
                     </tr>
                 @endforeach                    
@@ -89,7 +98,7 @@
                 </div>
             </div>
             <div class="flex justify-end">
-            <a wire:click="getPDF()" class="ml-4 cursor-pointer">
+            <a wire:click="getDistrictPDF()" class="ml-4 cursor-pointer">
             <svg height="35px" width="35px" class="mt-3" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
             viewBox="0 0 512 512" xml:space="preserve">
             <path style="fill:#E2E5E7;" d="M128,0c-17.6,0-32,14.4-32,32v448c0,17.6,14.4,32,32,32h320c17.6,0,32-14.4,32-32V128L352,0H128z"/>
@@ -114,8 +123,4 @@
             </div>
         </div>
     </div>
-    
-
 </div>
-
-

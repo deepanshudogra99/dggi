@@ -17,4 +17,5 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/masters/statemaster',[MasterController::class,'statemaster'])->name('statemaster');
+    Route::get('/masters/districtmaster',[MasterController::class,'districtmaster'])->name('districtmaster');
 });

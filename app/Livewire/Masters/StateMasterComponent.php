@@ -4,6 +4,8 @@ namespace App\Livewire\Masters;
 use App\Models\StateMaster;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Options;
 
 use Livewire\Component;
 
@@ -61,6 +63,27 @@ class StateMasterComponent extends Component
         $this->toggle('newmodal');
     }
 
+    }
+
+    public function getPDF(){
+        $pdfdata = StateMaster::all();
+        $this->headers = [            
+            'Sr. no.',
+            'State Name',
+            'State Abbrevation',          
+        ];
+        $options = new Options();
+        $options->set('isPhpEnabled', true); 
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true); 
+        $pdfContent = PDF::loadView('reports.statemasterreport', ["headers" => $this->headers,"pdfdata"=>$pdfdata])
+        ->setPaper('a4', 'portrait')
+        ->setWarnings(false)
+        ->setOptions([$options])->output();        
+        return response()->streamDownload(
+            fn () => print($pdfContent),
+            "State Master Report.pdf"
+        ); 
     }
 
     public function toggle($key)
