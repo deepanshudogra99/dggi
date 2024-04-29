@@ -22,24 +22,32 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            
-        
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">       
             <!-- Page Heading -->
             @if (isset($header))
                 <div class="bg-gray-250  dark:bg-gray-800 shadow ">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center">
+                    <div class="max-w-7xl mx-auto py- px-4 sm:px-6 lg:px-8 text-center">
                         {{ $header }}
                     </div>
                  </div>
             @endif
             @livewire('navigation-menu')
-
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
+            <footer style="margin-top: 238px" class=" bg-green-900 text-white px-2 py-4 fixed-bottom w-full">
+            <div class="container mx-auto text-center">
+                <p>Developed By <span class="font-bold">NIC KULLU</span></p>
+            </div>
+        </footer>
+        <!-- <footer class="bg-green-900 text-white px-2 py-4 mt-auto">
+        <div class="container mx-auto mt-auto text-center">
+            <p>Developed By <span class="font-bold">NIC KULLU</span></p>
         </div>
+    </footer> -->
+        </div>
+
 
         @stack('modals')
 

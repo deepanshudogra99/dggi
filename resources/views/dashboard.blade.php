@@ -8,8 +8,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
+            <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-xl sm:rounded-lg">
+                <x-welcome />                
             </div>
         </div>
     </div>
@@ -19,6 +19,6 @@
         </h2>
         <h3 class="font-semibold text-xl text-green-900 leading-tight">
             (Himachal Pradesh)
-        </h3>
-    </x-slot>
+        </h3>       
+    </x-slot>    
 </x-app-layout>

@@ -65,6 +65,7 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>District Code</b></th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>District Abbrevation</b></th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>Total Offices</b></th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>Actions</b></th>
                     </tr>
                 </thead>
                 
@@ -88,7 +89,28 @@
                     </td>                    
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{ $dt->totaloffices !== null ? $dt->totaloffices : 0 }}</div>
-                    </td>                    
+                    </td> 
+                    <td class="px-6 py-4 whitespace-nowrap flex items-center justify-center">
+                        <a href="" class="inline-block mx-2">
+                        <svg width="16px" height="16px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">        
+                            <title>edit [#1479]</title>
+                            <desc>Created with Sketch.</desc>
+                            <defs>
+                            </defs>
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="Dribbble-Light-Preview" transform="translate(-99.000000, -400.000000)" fill="#000000">
+                                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                                        <path d="M61.9,258.010643 L45.1,258.010643 L45.1,242.095788 L53.5,242.095788 L53.5,240.106431 L43,240.106431 L43,260 L64,260 L64,250.053215 L61.9,250.053215 L61.9,258.010643 Z M49.3,249.949769 L59.63095,240 L64,244.114985 L53.3341,254.031929 L49.3,254.031929 L49.3,249.949769 Z" id="edit-[#1479]">
+                                        </path>
+                                     </g>
+                                </g>
+                            </g>
+                        </svg>
+                        </a>
+                        <a href="" class="inline-block mx-2">
+                        <svg fill="#000000" width="19px" height="19px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
+                        </a>
+                    </td>                        
                     </tr>
                 @endforeach                    
                 </tbody>
