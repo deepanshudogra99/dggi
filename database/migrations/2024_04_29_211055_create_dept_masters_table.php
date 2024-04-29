@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('dept_masters', function (Blueprint $table) {
             $table->id();
-            $table->string('stcode');
-            $table->string('dtcode');
-            $table->string('deptcode');
-            $table->string('deptname');
-            $table->string('deptkey');
+            $table->string('stcode',3);
+            $table->string('dtcode',3);
+            $table->string('deptcode',3);
+            $table->string('deptname',50);
+            $table->string('deptkey',10);
             $table->timestamps();
         });
     }

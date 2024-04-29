@@ -15,16 +15,16 @@
 <div>     
 
     <div class="flex justify-between items-center">
-    <h2 class="text-2xl font-extrabold text-green-500 leading-tight tracking-tight">District Master</h2>
+    <h2 class="text-2xl font-extrabold text-blue-500 leading-tight tracking-tight">Deparment Master</h2>
     <div>
-        <button wire:click="toggle('newmodal')" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">+ Add District</button>
+        <button wire:click="toggle('newmodal')" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">+ Add Deparment</button>
        
     </div>
 </div>
 
     <x-confirmation-modal wire:model="newmodal">
         <x-slot name="title">
-            Add New District
+            Add New Deparment
         </x-slot>
         <x-slot name="content">
             <div>  
@@ -33,23 +33,29 @@
                     @csrf
                         <div class="mb-4">
                             <x-label for="statename" name="statename" class="block text-sm font-medium text-gray-700"/><b>State Name</b>
-                            <x-select wire:model="statename" name="statename" type="text" :ddlist="$states" idfield="stcode" textfield="stname" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter district name" />
-                        </div>    
+                            <x-select wire:model="statename" name="statename" type="text" :ddlist="$states" idfield="stcode" textfield="stname" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" wire:change="getdistricts()" />
+                        </div>
+                        @if($dists)
                         <div class="mb-4">
-                            <x-label for="stateabr" name="stateabr" class="block text-sm font-medium text-gray-700"/><b>District Name</b>
-                            <x-input wire:model="distname" name="stateabr" type="text" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter district name    " />
-                        </div>    
+                            <x-label for="distname" name="distname" class="block text-sm font-medium text-gray-700"/><b>District Name</b>
+                            <x-select wire:model="distname" name="distname" type="text" :ddlist="$dists" idfield="dtcode" textfield="dtname" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"/>
+                        </div>                        
+                       
+                        @endif                           
                         <div class="mb-4">
-                            <x-label for="stateabr" name="stateabr" class="block text-sm font-medium text-gray-700"/><b>District Abbrevation</b>
-                            <x-input wire:model="distabbr" name="stateabr" type="text" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter district abbrevation    " />
-                        </div>    
+                            <x-label for="stateabr" name="stateabr" class="block text-sm font-medium text-gray-700"/><b>Department Name</b>
+                            <x-input wire:model="deptname" name="stateabr" type="text" required class="mt-2 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter district abbrevation    " />
+                        </div>
+                       
+                           
+                           
                     </form>
             </div>
         </x-slot>
         <x-slot name="footer">
             <div class="flex justify-end">
                 <button wire:click="$toggle('newmodal')"  class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Cancel</button>
-                <button wire:click="newdistrict()"  class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 ml-2" >Submit</button>
+                <button wire:click="newDepartment()"  class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-green-600 ml-2" >Submit</button>
             </div>
         </x-slot>
     </x-confirmation-modal>
@@ -57,21 +63,21 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-300 bg-green-200 hover:bg-green-300">
-                <thead class="bg-green-300 ">
+                <table class="min-w-full divide-y divide-gray-300 bg-blue-200 hover:bg-blue-300">
+                <thead class="bg-blue-300 ">
                     <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>Sr.No</b></th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>State Name</b></th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>District Name</b></th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>District Code</b></th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>District Abbrevation</b></th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>Total Offices</b></th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>Department Name</b></th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>Department Code</b></th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider"><b>Department Key</b></th>                    
                     </tr>
                 </thead>
                 
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($tableData as $key=>$dt)
-                    <tr class="hover:bg-green-100">
+                    <tr class="hover:bg-blue-100">
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{++$key}}</div>
                     </td>
@@ -79,17 +85,18 @@
                         <div class="text-sm text-gray-900">{{getstatename($dt->stcode)}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">{{$dt->dtname}}</div>
+                    <div class="text-sm text-gray-900">{{getdistrictname($dt->stcode,$dt->dtcode)}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{$dt->dtcode}}</div>
+                    <div class="text-sm text-gray-900">{{$dt->deptname}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{$dt->dtabbr}}</div>
-                    </td>                    
+                        <div class="text-sm text-gray-900">{{$dt->deptcode}}</div>
+                    </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $dt->totaloffices !== null ? $dt->totaloffices : 0 }}</div>
+                        <div class="text-sm text-gray-900">{{$dt->deptkey}}</div>
                     </td>                    
+                   
                     </tr>
                 @endforeach                    
                 </tbody>
@@ -99,7 +106,7 @@
                 </div>
             </div>
             <div class="flex justify-end">
-            <a wire:click="getDistrictPDF()" class="ml-4 cursor-pointer">
+            <a wire:click="getDepartmentPDF()" class="ml-4 cursor-pointer">
             <svg height="35px" width="35px" class="mt-3" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
             viewBox="0 0 512 512" xml:space="preserve">
             <path style="fill:#E2E5E7;" d="M128,0c-17.6,0-32,14.4-32,32v448c0,17.6,14.4,32,32,32h320c17.6,0,32-14.4,32-32V128L352,0H128z"/>

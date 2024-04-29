@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\StateMaster;
+use App\Models\DistMaster;
 
 
     function getCurrentDateTime()
@@ -54,6 +55,15 @@ use App\Models\StateMaster;
         $state = StateMaster::where('stcode',$statecode)->first();
         if($state){
             return $state->stname;
+        }
+        else{
+            return " ";
+        }
+    }
+    function getdistrictname($statecode,$distcode){
+        $district = DistMaster::where('stcode',$statecode)->where('dtcode',$distcode)->first();
+        if($district){
+            return $district->dtname;
         }
         else{
             return " ";
