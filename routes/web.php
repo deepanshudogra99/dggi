@@ -18,4 +18,5 @@ Route::middleware([
 
     Route::get('/masters/statemaster',[MasterController::class,'statemaster'])->name('statemaster');
     Route::get('/masters/districtmaster',[MasterController::class,'districtmaster'])->name('districtmaster');
+    Route::get('/masters/departmentmaster',[MasterController::class,'departmentmaster'])->name('departmentmaster');
 });

@@ -13,6 +13,9 @@ class MasterController extends Controller
     public function districtmaster(){
         return view('Masters.districtmaster');
     }
+    public function departmentmaster(){
+        return view('Masters.departmentmaster');
+    }
 }
     
 

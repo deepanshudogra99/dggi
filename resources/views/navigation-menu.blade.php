@@ -39,6 +39,9 @@
                         <x-dropdown-link href="{{ route('districtmaster') }}">
                             {{ __('District  Master') }}
                         </x-dropdown-link>
+                        <x-dropdown-link href="{{ route('departmentmaster') }}">
+                            {{ __('Department  Master') }}
+                        </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>                 
 
